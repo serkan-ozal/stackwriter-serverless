@@ -21,7 +21,6 @@ with local variables (name, type and value) manually (by programmatic API) or au
 - Add agent as layer into your AWS Lambda function:
 ```
 arn:aws:lambda:${region}:273094347961:layer:stackwriter:${layer-version}
-
 ```
 
 You can use the version shown below instead of `$layer-version}`:
@@ -29,7 +28,7 @@ You can use the version shown below instead of `$layer-version}`:
 ![layer-version](https://api.globadge.com/v1/badgen/aws/lambda/layer/latest-version/us-east-1/273094347961/stackwriter) (badge powered by [Globadge serverless](https://www.globadge.com/badges/serverless))
 
 - Add API as `provided` (no need to bundle it with the artifact as it is also available on AWS Lambda environment through by layer) dependency into your project:
-```
+```xml
 <dependency>
     <groupId>net.sozal</groupId>
     <artifactId>stackwriter-api</artifactId>
@@ -84,6 +83,21 @@ for (Frame frame : StackWriter.takeSnapshot()) {
                 localVarName, localVarType, localVarValue));
     }
 }
+```
+
+### Getting callstack from given start depth
+```java
+StackWriter.takeSnapshotWithStartDepth(2);
+```
+
+### Getting callstack with the frames at most as given max frame count
+```java
+StackWriter.takeSnapshotWithMaxFrameCount(10);
+```
+
+### Getting callstack from given start depth with the frames at most as given max frame count
+```java
+StackWriter.takeSnapshot(2, 10);
 ```
 
 ## Roadmap
