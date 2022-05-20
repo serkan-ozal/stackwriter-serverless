@@ -65,24 +65,25 @@ import net.sozal.stackwriter.api.domain.Frame;
 
 ...
 
-        System.out.println("FRAMES:");
-        for (Frame frame : StackWriter.takeSnapshot()) {
-        System.out.println(String.format(
-        "  - %s#%s@%d",
-        frame.getClazz().getName(),
-        frame.getMethod().getName(),
-        frame.getLine()));
-        Map<String, LocalVariable> locals = frame.getLocals();
-        for (LocalVariable local : locals.values()) {
+System.out.println("FRAMES:");
+for (Frame frame : StackWriter.takeSnapshot()) {
+    System.out.println(
+        String.format(
+            "  - %s#%s@%d",
+            frame.getClazz().getName(),
+            frame.getMethod().getName(),
+            frame.getLine()));
+   Map<String, LocalVariable> locals = frame.getLocals();
+   for (LocalVariable local : locals.values()) {
         String localVarName = local.getName();
         Class localVarType = local.getType();
         Object localVarValue = local.getValue();
-        System.out.println(String.format(
-        "    + %s: type=%s, value=%s",
-        localVarName, localVarType, localVarValue));
-        }
-        }
-
+        System.out.println(
+            String.format(
+                "    + %s: type=%s, value=%s",
+                localVarName, localVarType, localVarValue));
+    }
+}
 ```
 
 ## Roadmap
